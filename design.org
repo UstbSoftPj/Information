@@ -1,0 +1,98 @@
+* Functions
+** User
+*** Regst
+**** validate
+=POST /api/user/regst/validate=
+- validater
+  - type : email | phone
+  - content (e.g. xxxx@xxx.com 1xxx21312311xxx)
+**** submit
+=POST /api/user/regst/submit=
+- regst
+  - username
+  - password
+  - number
+*** Login
+=POST /api/user/login=
+- login
+  - username
+  - password
+*** Profile Update
+=POST /api/user/profile/update=
+*** Password Find
+**** validate
+=POST /api/user/passwordfind/validate=
+- validater
+  - username
+**** submit
+=POST /api/user/passwordfind=
+- submit
+  - newpassword
+  - number
+
+** Activity
+*** Create Template
+=POST /api/activity/template/create=
+- template
+  - characters : [string]
+  - [attribute]
+    - name : string
+    - type : string | number | enum
+    - enums
+*** Create Act
+**** templates
+=GET /api/activity/templates=
+- templates : [string]
+**** select template
+=GET /api/activity/template/<name>=
+- template
+  - type
+  - characters : [string]
+  - custom : ...
+**** resource
+***** resources
+=GET /api/activity/resources=
+- resources : [string]
+***** get resource
+=GET /api/activity/resource/<name>=
+- resource
+  - name
+  - type : quantity | time
+  - fee
+  - info : {sum uses rest} | [time activity]
+**** submit
+=POST /api/activity/submit=
+- submit
+  - name
+  - time
+    - start
+    - end
+  - [resource]
+    - name
+    - type : quantity | time
+    - use : number | {start end}
+  - [manager]
+  - [invite]
+    - username
+    - character
+  - custom : ...
+*** Attend
+**** activities
+=GET /api/activities=
+- [activity]
+  - id
+  - name
+  - time
+    - start
+    - end
+**** attend
+=GET /api/activity/attend/<id>=
+*** Edit
+**** invite
+**** resource
+***** get resource
+***** set resource
+**** update
+*** Agend
+
+** 

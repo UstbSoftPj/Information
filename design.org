@@ -29,6 +29,15 @@
 - submit
   - newpassword
   - number
+*** Agend
+=GET /api/user/agend=
++ [agend]
+  + activity
+    + id
+    + name
+  + time
+    + start
+    + end
 
 ** Activity
 *** Create Template
@@ -49,17 +58,6 @@
   - type
   - characters : [string]
   - custom : ...
-**** resource
-***** resources
-=GET /api/activity/resources=
-- resources : [string]
-***** get resource
-=GET /api/activity/resource/<name>=
-- resource
-  - name
-  - type : quantity | time
-  - fee
-  - info : {sum uses rest} | [time activity]
 **** submit
 =POST /api/activity/submit=
 - submit
@@ -67,6 +65,7 @@
   - time
     - start
     - end
+  - [tag]
   - [resource]
     - name
     - type : quantity | time
@@ -77,6 +76,18 @@
     - character
   - custom : ...
 *** Attend
+**** search
+=GET /api/activite/search=
+- search
+  - [tag]
+  - name?
+  - time?
+    - type
+    - start
+    - end
+  - [attribute]
+    - key
+    - val
 **** activities
 =GET /api/activities=
 - [activity]
@@ -93,6 +104,68 @@
 ***** get resource
 ***** set resource
 **** update
-*** Agend
 
-** 
+** Resource
+*** search
+=GET /api/resource/search=
+- search
+  - name?
+  - [tag]
+    
+- [resource]
+  + name
+  + id
+  + rest
+  + desc
+*** resources
+=GET /api/resources=
+*** get
+=GET /api/resource/<id>=
+*** create
+=POST /api/resource/create=
+- resource
+  - name
+  - number?
+  - [tag]
+  - desc?
+*** group
+**** search
+=GET /api/resource/group/search=
+- search
+  - name?
+  - [tag]
+
+- [group]
+  + name
+  + cost
+  + id
+**** get
+=GET /api/resource/group/<id>=
++ group
+  + name
+  + cost
+  + [resource] : Resource
+  + [consum]
+    + name
+    + number
+**** create
+=POST /api/resource/group/create=
+- group
+  - name
+  - cost
+  - [resource]
+    - id
+    - used
+  - [consum]
+    - name
+    - number
+*** Agend
+=GET /api/resource/agend/<id>=
++ [agend]
+  + activity
+    + id
+    + name
+  + time
+    + start
+    + end
+  + used
